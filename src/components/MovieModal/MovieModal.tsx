@@ -28,6 +28,16 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   return createPortal(
     <div
       className={css.backdrop}
